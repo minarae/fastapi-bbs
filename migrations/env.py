@@ -5,8 +5,8 @@ from sqlalchemy import pool
 
 from alembic import context
 import os
-import json
 import models
+from starlette.config import Config
 
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -15,14 +15,15 @@ from sqlalchemy.ext.declarative import declarative_base
 config = context.config
 Base = declarative_base()
 
-host = os.getenv("RDB_ENDPOINT", "localhost")
-username = "mlops"
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-SERECT_FILE = os.path.join(BASE_DIR, '../secrets.json')
-serects = json.loads(open(SERECT_FILE).read())
-DB = serects["DB"]
+CONFIG_FILE = os.path.join(BASE_DIR, '../config/.env')
+db_config = Config(CONFIG_FILE)
+DB_USER = db_config('DB_USER')
+DB_PW = db_config('DB_PW')
+DB_HOST = db_config('DB_HOST')
+DB_PORT = db_config('DB_PORT')
+DB_DATABASE = db_config('DB_DATABASE')
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -30,7 +31,7 @@ config = context.config
 if not config.get_main_option("sqlalchemy.url"):
     config.set_main_option(
         "sqlalchemy.url",
-        f"mysql+pymysql://{DB['user']}:{DB['password']}@{DB['host']}/{DB['database']}",
+        f"mysql+pymysql://{DB_USER}:{DB_PW}@{DB_HOST}/{DB_DATABASE}",
     )
 
 # Interpret the config file for Python logging.
