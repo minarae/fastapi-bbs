@@ -1,0 +1,17 @@
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+.idea
+*.pyc
+__pycache__
+.env
+logs
+.deta
+
+**/node_modules
+config
+uploads
+docker-compose.yml
