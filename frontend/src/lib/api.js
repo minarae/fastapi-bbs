@@ -21,6 +21,7 @@ const fastapi = (operation, url, params, success_callback, failure_callback) => 
 
     let options = {
         method: method,
+        credentials: "include",
         headers: {
             "Content-Type": content_type
         }
@@ -35,7 +36,6 @@ const fastapi = (operation, url, params, success_callback, failure_callback) => 
         options['body'] = body
     }
 
-    console.log(_url);
     fetch(_url, options)
         .then(response => {
             if(response.status === 204) {  // No content

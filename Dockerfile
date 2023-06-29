@@ -50,8 +50,9 @@ RUN apt install -y nodejs
 # 여러분의 현재 디렉토리의 모든 파일들을 도커 컨테이너의 /myapi 디렉토리로 복사 (원하는 디렉토리로 설정해도 됨)
 #ADD . /myapi
 
-# 8002번 포트 개방 (FastAPI 웹 애플리케이션을 8000번 포트에서 띄움)
-#EXPOSE 8002
+# 8000번 포트 개방 (FastAPI 웹 애플리케이션을 8000번 포트에서 띄움)
+EXPOSE 8000
+ENV PORT 8000
 
 # 작업 디렉토리로 이동
 #WORKDIR /myapi
@@ -64,4 +65,4 @@ RUN npm install
 
 WORKDIR /app
 # 컨테이너에서 실행될 명령어.
-CMD [ "/bin/bash" ]
+ENTRYPOINT [ "/bin/bash", "/app/entrypoint.sh" ]
