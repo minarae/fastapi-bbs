@@ -1,4 +1,3 @@
 ## Docker 실행하기
-docker build -t bbs .
-docker container rm bbs2
-docker run --name bbs2 -it -v ./config:/app/config -p 8002:8002 bbs2
+docker build --build-arg VITE_SERVER_URL=http://okt13.oktree.com:8000 -t bbs .
+docker run --rm --name fastapi-bbs -v /data/www/fastapi-bbs/config:/app/config -p 8000:8000 --add-host=host.docker.internal:host-gateway bbs
