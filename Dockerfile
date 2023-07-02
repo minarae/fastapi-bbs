@@ -48,7 +48,7 @@ RUN curl -s https://deb.nodesource.com/setup_16.x | bash
 RUN apt install -y nodejs
 
 ARG VITE_SERVER_URL
-RUN echo "VITE_SERVER_URL=$VITE_SERVER_URL" > /app/frontend/.env
+RUN echo "VITE_SERVER_URL=$VITE_SERVER_URL" > /app/frontend/.env.production
 
 # 여러분의 현재 디렉토리의 모든 파일들을 도커 컨테이너의 /myapi 디렉토리로 복사 (원하는 디렉토리로 설정해도 됨)
 #ADD . /myapi
