@@ -65,6 +65,7 @@ ENV PORT 8000
 
 # npm install
 RUN npm install
+RUN npm run build
 
 WORKDIR /app
 # 컨테이너에서 실행될 명령어.
