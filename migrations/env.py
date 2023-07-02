@@ -31,7 +31,7 @@ config = context.config
 if not config.get_main_option("sqlalchemy.url"):
     config.set_main_option(
         "sqlalchemy.url",
-        f"mysql+pymysql://{DB_USER}:{DB_PW}@{DB_HOST}/{DB_DATABASE}",
+        f"mysql+pymysql://{DB_USER}:{DB_PW}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}",
     )
 
 # Interpret the config file for Python logging.

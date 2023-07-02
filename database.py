@@ -12,8 +12,8 @@ DB_HOST = config('DB_HOST')
 DB_PORT = config('DB_PORT')
 DB_DATABASE = config('DB_DATABASE')
 
-ASYNC_DB_URL = f"mysql+aiomysql://{DB_USER}:{DB_PW}@{DB_HOST}/{DB_DATABASE}"
-DB_URL = f"mysql+pymysql://{DB_USER}:{DB_PW}@{DB_HOST}/{DB_DATABASE}?charset=utf8"
+ASYNC_DB_URL = f"mysql+aiomysql://{DB_USER}:{DB_PW}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
+DB_URL = f"mysql+pymysql://{DB_USER}:{DB_PW}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}?charset=utf8"
 
 # SQLAlchemy 엔진 생성
 engine = create_engine(DB_URL)
