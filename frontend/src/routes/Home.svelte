@@ -3,7 +3,12 @@
     import { link } from 'svelte-spa-router'
     import { page, keyword, is_login } from "../lib/store"
     import moment from 'moment/min/moment-with-locales'
+    import { push } from "svelte-spa-router"
     moment.locale('ko')
+
+    if ($is_login === false) {
+        push('/');
+    }
 
     let question_list = []
     let size = 10
@@ -30,7 +35,7 @@
 <div class="container my-3">
     <div class="row my-3">
         <div class="col-6">
-            <a use:link href="/question-create" 
+            <a use:link href="/question-create"
                 class="btn btn-primary {$is_login ? '' : 'disabled'}">질문 등록하기</a>
         </div>
         <div class="col-6">
@@ -75,7 +80,7 @@
         </li>
         <!-- 페이지번호 -->
         {#each Array(total_page) as _, loop_page}
-        {#if loop_page >= $page-5 && loop_page <= $page+5} 
+        {#if loop_page >= $page-5 && loop_page <= $page+5}
         <li class="page-item {loop_page === $page && 'active'}">
             <button on:click="{() => $page = loop_page}" class="page-link">{loop_page+1}</button>
         </li>

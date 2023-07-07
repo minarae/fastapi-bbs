@@ -10,11 +10,11 @@
   import AnswerModify from "./routes/AnswerModify.svelte"
 
   const routes = {
-    '/': Home,
+    '/': UserLogin,
     '/detail/:question_id': Detail,
     '/question-create': QuestionCreate,
     '/user-create': UserCreate,
-    '/user-login': UserLogin,
+    '/question-list': Home,
     '/question-modify/:question_id': QuestionModify,
     '/answer-modify/:answer_id': AnswerModify,
   }

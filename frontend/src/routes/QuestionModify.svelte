@@ -2,19 +2,23 @@
     import { push } from 'svelte-spa-router'
     import fastapi from "../lib/api"
     import Error from "../components/Error.svelte"
+    import { is_login } from "../lib/store"
 
+    if ($is_login === false) {
+        push('/');
+    }
     export let params = {}
     const question_id = params.question_id
 
     let error = {detail:[]}
     let subject = ''
     let content = ''
-    
+
     fastapi("get", "/api/question/detail/" + question_id, {}, (json) => {
         subject = json.subject
         content = json.content
     })
-    
+
     function update_question(event) {
         event.preventDefault()
         let url = "/api/question/update"
@@ -23,7 +27,7 @@
             subject: subject,
             content: content,
         }
-        fastapi('put', url, params, 
+        fastapi('put', url, params,
             (json) => {
                 push('/detail/'+question_id)
             },

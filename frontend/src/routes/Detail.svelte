@@ -12,6 +12,9 @@
     let question = {answers:[], voter:[], content: ''}
     let content = ""
     let error = {detail:[]}
+    if ($is_login === false) {
+        push('/');
+    }
 
     function get_question() {
         fastapi("get", "/api/question/detail/" + question_id, {}, (json) => {
@@ -27,7 +30,7 @@
         let params = {
             content: content
         }
-        fastapi('post', url, params, 
+        fastapi('post', url, params,
             (json) => {
                 content = ''
                 error = {detail:[]}
@@ -45,7 +48,7 @@
             let params = {
                 question_id: _question_id
             }
-            fastapi('delete', url, params, 
+            fastapi('delete', url, params,
                 (json) => {
                     push('/')
                 },
@@ -62,7 +65,7 @@
             let params = {
                 answer_id: answer_id
             }
-            fastapi('delete', url, params, 
+            fastapi('delete', url, params,
                 (json) => {
                     get_question()
                 },
@@ -79,7 +82,7 @@
             let params = {
                 question_id: _question_id
             }
-            fastapi('post', url, params, 
+            fastapi('post', url, params,
                 (json) => {
                     get_question()
                 },
@@ -96,7 +99,7 @@
             let params = {
                 answer_id: answer_id
             }
-            fastapi('post', url, params, 
+            fastapi('post', url, params,
                 (json) => {
                     get_question()
                 },
@@ -130,12 +133,12 @@
             </div>
             <div class="my-3">
                 <button class="btn btn-sm btn-outline-secondary"
-                    on:click="{vote_question(question.id)}"> 
+                    on:click="{vote_question(question.id)}">
                     추천
                     <span class="badge rounded-pill bg-success">{ question.voter.length }</span>
                 </button>
                 {#if question.user && $username === question.user.username }
-                <a use:link href="/question-modify/{question.id}" 
+                <a use:link href="/question-modify/{question.id}"
                     class="btn btn-sm btn-outline-secondary">수정</a>
                 <button class="btn btn-sm btn-outline-secondary"
                     on:click={() => delete_question(question.id)}>삭제</button>
@@ -170,12 +173,12 @@
             </div>
             <div class="my-3">
                 <button class="btn btn-sm btn-outline-secondary"
-                    on:click="{vote_answer(answer.id)}"> 
+                    on:click="{vote_answer(answer.id)}">
                     추천
                     <span class="badge rounded-pill bg-success">{ answer.voter.length }</span>
                 </button>
                 {#if answer.user && $username === answer.user.username }
-                <a use:link href="/answer-modify/{answer.id}" 
+                <a use:link href="/answer-modify/{answer.id}"
                     class="btn btn-sm btn-outline-secondary">수정</a>
                 <button class="btn btn-sm btn-outline-secondary"
                     on:click={() => delete_answer(answer.id) }>삭제</button>
@@ -188,11 +191,11 @@
     <Error error={error} />
     <form method="post" class="my-3">
         <div class="mb-3">
-            <textarea rows="10" bind:value={content} 
+            <textarea rows="10" bind:value={content}
                 disabled={$is_login ? "" : "disabled"}
                 class="form-control" />
         </div>
-        <input type="submit" value="답변등록" class="btn btn-primary {$is_login ? '' : 'disabled'}" 
+        <input type="submit" value="답변등록" class="btn btn-primary {$is_login ? '' : 'disabled'}"
             on:click="{post_answer}" />
     </form>
 </div>

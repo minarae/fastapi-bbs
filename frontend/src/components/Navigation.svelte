@@ -6,8 +6,8 @@
 <!-- 네비게이션바 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
     <div class="container-fluid">
-        <a use:link class="navbar-brand" href="/" 
-            on:click="{() => {$keyword = '', $page = 0}}">Pybo</a>
+        <a use:link class="navbar-brand" href="/"
+            on:click="{() => {$keyword = '', $page = 0}}">oktree</a>
         <button
             class="navbar-toggler"
             type="button"
@@ -22,7 +22,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {#if $is_login }
                     <li class="nav-item">
-                        <a use:link href="/user-login" class="nav-link" on:click={() => {
+                        <a use:link href="/" class="nav-link" on:click={() => {
                             $access_token = ''
                             $username = ''
                             $is_login = false
@@ -33,7 +33,7 @@
                         <a use:link class="nav-link" href="/user-create">회원가입</a>
                     </li>
                     <li class="nav-item">
-                        <a use:link class="nav-link" href="/user-login">로그인</a>
+                        <a use:link class="nav-link" href="/">로그인</a>
                     </li>
                 {/if}
             </ul>

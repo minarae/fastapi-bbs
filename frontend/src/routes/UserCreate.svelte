@@ -18,9 +18,9 @@
             password2: password2,
             email: email
         }
-        fastapi('post', url, params, 
+        fastapi('post', url, params,
             (json) => {
-                push('/user-login')
+                push('/')
             },
             (json_error) => {
                 error = json_error

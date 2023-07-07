@@ -2,6 +2,10 @@
     import { push } from 'svelte-spa-router'
     import fastapi from "../lib/api"
     import Error from "../components/Error.svelte"
+    import { is_login } from "../lib/store"
+    if ($is_login === false) {
+        push('/');
+    }
 
     let error = {detail:[]}
     let subject = ''
@@ -14,7 +18,7 @@
             subject: subject,
             content: content,
         }
-        fastapi('post', url, params, 
+        fastapi('post', url, params,
             (json) => {
                 push("/")
             },

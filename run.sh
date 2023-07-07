@@ -1,1 +1,1 @@
-uvicorn app.main:app --reload --port 8002
+uvicorn app.main:app --reload --port 8000
