@@ -1,11 +1,5 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Table
-from sqlalchemy.dialects.mysql import (
-    TINYINT,
-    SMALLINT,
-    INTEGER,
-    BIGINT,
-    TINYINT
-)
+from sqlalchemy import Column, String, Text, DateTime, ForeignKey, Table
+from sqlalchemy.dialects.mysql import INTEGER
 from sqlalchemy.orm import relationship
 
 from database import Base
